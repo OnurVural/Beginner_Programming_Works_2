@@ -1,0 +1,49 @@
+/**
+ * A simple Java class!
+ */
+import java.awt.Graphics;
+import java.awt.*;
+import java.util.*;
+import java.util.ArrayList;
+
+public class Balloon extends Circle implements Drawable 
+{
+   // properties
+   final int limitOfCircleMargin = 600;
+   Random r;
+   int x;
+   int y;
+   
+   // constructors
+   public Balloon()
+   {
+      super( 25 );   
+      r = new Random();
+      y = r.nextInt(limitOfCircleMargin);
+      x = r.nextInt(limitOfCircleMargin);
+      setLocation(x,y);
+   }
+   
+   // methods
+   public void draw( Graphics g)
+   { 
+      g.setColor( Color.RED);
+      g.drawOval( getX() - radius , getY() - radius , radius * 2, radius *2);   
+   }
+   
+   public void grow()
+   {
+     int unit;
+     unit = 2;
+     if ( radius < 100 )
+     {
+        radius = radius + unit; 
+     }
+     else
+     {
+         setSelected( true );
+         radius = 0;   
+     }
+     
+   }
+}

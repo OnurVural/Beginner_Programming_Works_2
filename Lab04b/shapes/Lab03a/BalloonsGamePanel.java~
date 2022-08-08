@@ -1,0 +1,213 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Iterator;
+import javax.swing.Timer;
+import java.util.Random;
+/**
+ * The panel to design ballongame panel
+ * @author ONUR
+ * @version 6.04.2020
+ */ 
+
+public class BalloonsGamePanel extends JPanel 
+{
+   // properties
+   final int WIDTH = 600;
+   final int HEIGHT = 600;
+   
+   JLabel label;
+   ShapeContainer balloons;
+   Balloon b;
+   Timer t;
+   Timer elapsedTime;
+   Graphics g;
+   int x;
+   int y;
+   int points;
+   boolean mouseListenerOpen = true;
+   
+   
+   // constructors
+   public BalloonsGamePanel()
+   {
+      t = new Timer(250, new growListener());
+      elapsedTime = new Timer( 10000, new elapsedTimeListener()); 
+      balloons = new ShapeContainer(); 
+      points = 0;
+      label = new JLabel("POINTS: " + Integer.toString(points));
+      add(label);
+      
+      for ( int i = 0; i < 25 ; i++ )
+      {
+         b = new Balloon(); 
+         balloons.add(b);
+      }
+
+      setBackground ( Color.cyan);
+      setPreferredSize( new Dimension (WIDTH, HEIGHT));
+      t.addActionListener(new reinforcementListener());
+      t.addActionListener(new removeListener());
+      t.start();
+      elapsedTime.start();
+      addMouseListener( new popListener());
+      
+   }
+   
+   // methods
+   /**
+    * Overrides the paintComponent method of the BalloonsGamePanel so that it calls the draw method of each shape in the container.
+    */ 
+   @Override
+   public void paintComponent ( Graphics g )
+   {
+      super.paintComponent(g);
+      Iterator<Shape> scans = balloons.iterator();
+      
+      while (  scans.hasNext() )
+      {
+          Balloon drawShape = (Balloon) scans.next();
+          drawShape.draw(g);
+      }
+   }
+
+   //named inner classes
+   /**
+    * implements ActionListener to call the grow() method of each Balloon in balloons, every 250 milliseconds or so
+    */ 
+   public class growListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed(ActionEvent e) 
+      {
+         Iterator<Shape> scans = balloons.iterator();
+         t.start();
+         while (  scans.hasNext() )
+         {
+            Balloon drawShape = (Balloon)scans.next();
+            drawShape.grow();
+         }
+        repaint();
+      }
+   }
+   
+   /**
+    * Whenever there are less than say 15 balloons left, add another balloon at a random location
+    */ 
+   public class reinforcementListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed(ActionEvent e) 
+      {   
+         if ( balloons.size() < 15 )
+         {
+             b = new Balloon();  
+             balloons.add(b);
+         }
+      }
+      
+   }
+   
+   /**
+    * call removeSelected() to actually remove the balloons from the screen/collection
+    */ 
+   public class removeListener implements ActionListener
+   {
+      @Override
+      public void actionPerformed(ActionEvent e) 
+      {
+         balloons.removeSelected(); 
+      }
+//        repaint();
+      
+   }
+   
+   /**
+    * To simulate bursting a balloon with a pin, add a MouseListener to your BalloonsGamePanel
+    * override the mousePressed method so that it calls the selectAllAt( x, y) method of balloons using the location of mouse pressed event
+    */ 
+   public class popListener extends MouseAdapter
+   {
+       
+       @Override
+       public void mousePressed( MouseEvent e )
+       {
+           if (mouseListenerOpen)
+           {
+           Point p;
+           int pointIncrease;
+           p = e.getPoint();
+           System.out.println(p.x + "---" + p.y);
+           balloons.selectAllAt( p.x, p.y);
+           pointIncrease = balloons.selectAllAt( p.x, p.y);
+           
+           System.out.println(pointIncrease);
+           if ( pointIncrease > 1 )
+           {
+              points = points + pointIncrease;   
+              label.setText("POINTS: " + Integer.toString(points));
+           }
+           
+//           balloons.removeSelected();
+           repaint();
+           }
+       }
+ 
+   }
+   
+   /**
+    * keep track of how long the game has been running. Increment it in the timer's listener method, 
+    * and then stop the game after a fixed period. 
+    * Use a JOptionPane to inform the user the game is over. Perhaps allow the user to "Play again?" if they wish.
+    */ 
+   public class elapsedTimeListener implements ActionListener
+   {
+      //properties
+      JOptionPane gameOver;
+      JButton b1;
+      JButton b2;
+      Object[] choices = {"YES", "NO"};
+      Object defaultChoice = choices[0];
+      int counter;
+      int option;
+      
+      //constructors
+      public elapsedTimeListener()
+      {
+         gameOver = new JOptionPane();
+         counter = 10000;  
+ 
+      }
+      
+      //methods
+      @Override
+      public void actionPerformed(ActionEvent e) 
+      {   
+         
+         t.stop();
+         elapsedTime.stop();
+         mouseListenerOpen = false;
+         
+         option = gameOver.showOptionDialog(null, "Play again?","GAME OVER", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,choices,defaultChoice);
+         
+         if ( option == 0 )
+         {
+            points = 0;
+            label.setText("POINTS: " + Integer.toString(points));
+            repaint();
+            t.start();
+            elapsedTime.start();
+            mouseListenerOpen = true;
+         }
+         else if ( option == 1 )
+         {
+            System.exit(0);
+         }
+
+      }
+
+      
+   } 
+   
+   
+}

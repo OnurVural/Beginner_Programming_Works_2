@@ -1,0 +1,23 @@
+/**
+ * A simple Java interface for shapes to be for shapes to be Selectable
+ * @author ONUR
+ * @version 09.03.2020
+ */
+public interface Selectable
+{
+   // properties
+
+   // constructors
+   
+   // methods
+   //to get x coordinate
+   int getX();
+   
+   //to get y coordinate
+   int getY();
+   
+   //to change/set coordinates
+   void setLocation( int x, int y);
+   
+
+}
