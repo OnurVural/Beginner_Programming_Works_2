@@ -1,0 +1,15 @@
+import cs1.SimpleURLReader;
+/**
+ * class printing the contents of url (an html version of the original plain text) and have it appear as in the part (a) without any of the html code in it!
+ * @author ONUR
+ * @version 01.03.2020
+ */ 
+public class HTMLFilteredReader extends MySimpleURLReader 
+{
+   // properties
+
+   // constructors
+   
+   // methods
+
+}

@@ -1,0 +1,86 @@
+import java.util.ArrayList;
+/**
+ * Shape container class based on java's arraylist(TM)
+ * @author Onur
+ * @version 09.03.2020
+ */
+public class ShapeContainer
+{
+   // properties
+   ArrayList<Shape> container;
+
+   // constructors
+   public ShapeContainer()
+   {
+      container = new ArrayList<Shape>();   
+   }
+   // methods
+   
+   /**
+    * add !(ANY)! shape to collection
+    * @param s is ANY shape
+    */
+   public void add( Shape s)
+   {
+      container.add(s);   
+   }
+   
+   /**
+    * total area method
+    * @return the total area of all shapes inside the collection
+    */
+   public double getArea()
+   {
+      double area;
+      area = 0;
+      
+      for ( int i = 0; i < container.size(); i++ ) 
+      {
+         area = area + container.get(i).getArea();   
+      }
+      
+      return area;
+      
+   }
+   
+   /**
+    * information about shape
+    * @return String representation as information about the string
+    */
+    public String toString()
+    {
+       String info;
+       info = "";
+       
+       for ( int i = 0; i < container.size(); i++)
+       {
+           info = info + " At location " + i + ", there is a " + container.get(i) + '\n';   
+       }
+       return info;
+    }
+    
+    //------
+    public void find(int x, int y)
+    {
+       int counter;
+       counter = 0;
+//       Shape t;
+//       t = container.get(counter);
+//       ((Circle)t).getSelected();
+//       container.get(counter).getSelected() != true
+       while (   ((Circle)container.get(counter)).contains(  x,  y) != null || ((Rectangle)container.get(counter)).contains(  x,  y) != null ||
+                 ((Square)container.get(counter)).contains(  x,  y) != null ||counter < container.size())  
+       {
+          if ( ((Circle)container.get(counter)).contains(  x,  y) != null || ((Rectangle)container.get(counter)).contains(  x,  y) != null ||
+                 ((Square)container.get(counter)).contains(  x,  y) != null )
+          {
+              ((Circle)container.get(counter)).setSelected( true );   
+          }
+          counter++;      
+       }
+    }
+
+    //------------
+   
+
+}

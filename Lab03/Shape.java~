@@ -1,0 +1,14 @@
+/**
+ * A simple Java class!
+ */
+public abstract class Shape 
+{
+   // properties
+   int sides;
+   
+
+   // constructors
+   
+   // methods
+
+}
