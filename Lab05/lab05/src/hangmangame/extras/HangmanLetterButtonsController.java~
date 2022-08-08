@@ -1,0 +1,12 @@
+/**
+ * A simple Java class!
+ */
+public class HangmanLetterButtonsController implements ActionListener 
+{
+   // properties
+
+   // constructors
+   
+   // methods
+
+}

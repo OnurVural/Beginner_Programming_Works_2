@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20190813-220051">
+  <project autorefresh="false" build="classes/" main="hangmangame.GUIHangmanDemo" root="src/" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="hangmangame/extras/GallowsHangmanView.java" package="hangmangame.extras" timestamp="13-Apr-2020 11:46:01">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/HangmanLetterButtonControls.java" package="hangmangame.extras" timestamp="13-Apr-2020 09:30:07">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="Lab05.java" package="" timestamp="11-Apr-2020 12:55:43">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/ConsoleHangmanDemo.java" package="hangmangame" timestamp="11-Apr-2020 12:55:43">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/GUIHangmanDemo.java" package="hangmangame" timestamp="11-Apr-2020 12:55:43">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/HangmanConsoleView.java" package="hangmangame.extras" timestamp="11-Apr-2020 21:29:46">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/LetterButtonControls.java" package="hangmangame.extras" timestamp="11-Apr-2020 21:29:46">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/TextFieldControlPanel.java" package="hangmangame.extras" timestamp="11-Apr-2020 21:29:46">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/HangmanLetterButtonsController.java" package="hangmangame.extras" timestamp="11-Apr-2020 21:34:21">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/HangmanGUIPanel.java" package="hangmangame.extras" timestamp="13-Apr-2020 09:05:43">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/LabelsHangmanView.java" package="hangmangame.extras" timestamp="13-Apr-2020 09:06:46">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+      <file name="hangmangame/extras/NewGameButtonControl.java" package="hangmangame.extras" timestamp="13-Apr-2020 11:40:00">
+        <select from="1738" to="1738"/>
+        <scroll column="1112" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath>
+      <file absolute="false" name="../"/>
+    </classpath>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+/**
+ * Given an int array x, write recursive methods to find the location of: 
+ * (a) the first instance of a target value in x, 
+ * (b) the last instance of a target value in x 
+ * (c) the locations of all instances of the target value in x.
+ * @author Onur
+ * @version 25.04.2020
+ */ 
+public class NO5
+{
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+
+      // variables
+
+      // program code
+      System.out.println( "Start...");
+
+
+      System.out.println( "End.");
+   }
+
+}

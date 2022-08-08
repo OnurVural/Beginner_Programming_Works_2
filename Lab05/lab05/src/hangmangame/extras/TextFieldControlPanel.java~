@@ -1,0 +1,13 @@
+import javax.swing.*;
+/**
+ *
+ */
+public class TextFieldControlPanel extends JPanel
+{
+   // properties
+
+   // constructors
+   
+   // methods
+
+}

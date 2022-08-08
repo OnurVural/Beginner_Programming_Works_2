@@ -1,0 +1,168 @@
+import java.util.*;
+
+/**
+ * Java exercises to use and understand recursion methods consisting of four parts
+ * @author Onur
+ * @version 25.04.2020
+ */ 
+public class Lab06a
+{
+   //_______________________________________________________________________________________________________________
+   //A) Write a recursive Java method that counts the number of occurrences of the character "e" in a string
+   /**
+    * recursive Java method that counts the number of occurrences of the character "e" in a string
+    * @param s is the string to check
+    * @return the numbers of character "e"
+    */ 
+   public static int eNumbers(String s)
+   {
+      int count;
+      count = 0;
+      
+      if ( s.length() == 0)//empthy string basic step
+      {
+         return 0;   
+      }
+      
+      if ( s.charAt(0) == 'e' ) //|| s.charAt(0) == 'E'
+      {
+         count++;
+      }
+      return count + eNumbers(s.substring(1)); //continues to check by deleting first string and checking from new beginning 
+   }
+   //______________________________________________________________________________________________________________________
+   //B)Write a recursive method that takes a decimal value as an  int  parameter and prints out the binary equivalent 
+   /**
+    * recursive Java method that prints the given decimal as binary
+    * @param decimal is the param to be converted
+    */ 
+   public static void printBinary( int decimal)
+   {
+      if (decimal > 0) 
+      {
+         printBinary(decimal/2);//goes into recursion
+         System.out.print(decimal % 2 );//it begins printing with the last non zero decimal n/2
+      }
+   }
+   //______________________________________________________________________________________________________________________
+   //C)Write a recursive method that returns true if the strings in the array are in lexicographic (effectively alphabetic) order, and false otherwise
+   /**
+    * recursive Java method that decides ehether a string array is lexicographical or not
+    * @param x is the array to consider its lexicographicity
+    * @return true if the all elements of this array are alphabetical
+    */ 
+   public static boolean isLexi( String[] x )
+   {
+      String[] temp;
+      if ( x.length < 2 )//means no more elements needed to check
+      {
+         return true;
+      }
+      else if ( x[0].compareTo(x[1])> 0)//will check the first two values always
+      {  
+         return false;
+      }
+      else      
+      {
+         x = Arrays.copyOfRange(x, 1, x.length); //makes a new array while deleting the first
+         return isLexi( x );
+      }
+   }
+   //______________________________________________________________________________________________________________________
+   //D)recursive method that prints all n-digit even numbers in which each digit of the number, from its most-significant to least-significant digits
+   /**
+    * recursive Java method that prints all n-digit even numbers
+    * each digit of the number, from its most-significant to least-significant digits, is greater than the previous one
+    * @param n is digit no
+    */ 
+    public static void printnDigitEvenNums( int n )
+    {
+       final int firstLowerBound = 1;
+       nDigitEvenNums(  firstLowerBound, n, "");  //needs a helper method 
+       
+    }
+    
+    /**
+    * recursive Java method that prints all n-digit even numbers
+    * we needed to change printnDigitEvenNums method so that we could have a lowerBound to be updated recursively
+    * @param lowerBound the digit to be updated recursively
+    * @param n is digit no
+    * @param s is string to be merged and printed
+    */ 
+    public static void nDigitEvenNums( int lowerBound, int n, String s)
+    {
+       if (n == 0) //means no left
+       {
+          if ( isEven(s)) //the method helps to select which element to print by applying even condition
+              {
+                 System.out.print( s + " "); //prints the element
+              }
+       } 
+
+       for ( int i = lowerBound; i <= 9; i++)//starts from lower bound 
+       {
+          String temp;
+          temp = s + i; 
+          nDigitEvenNums( i + 1, n - 1, temp); //updating lower bound 
+       }
+    }
+    
+    /**
+    * method that checked whether a number meets the stated criteria or not, 
+    * to filter the candidate values  generated recursively, printing only those that meet the criteria
+    * @param s is the number to be checked
+    * @return true if number is divislbe by true, false otherwise
+    */ 
+    public static boolean isEven(String s)
+    {
+        
+       if ( Integer.parseInt(s) % 2 == 0 )//if divisible by 2 it is even
+       {
+          return true;
+       }  
+       return false;
+
+    }
+    
+   //______________________________________________________________________________________________________________________
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+      final String[] lexiWordArray = {"banana","lion","violin","zebra"};
+      final String[] nonLexiWordArray = {"banana","lion","zebra","violin"};
+      final int digitNo = 3;
+      // variables
+      String s;
+      int deci;
+      
+      
+      // program code
+      //______________________________________________________________________________________________________________________
+      //A) TEST
+      
+      s = "Suleiman the Magnificient";
+      System.out.println( "The number of e's in word " + s + " is " + eNumbers(s));
+      
+      //______________________________________________________________________________________________________________________
+      //B) TEST
+      
+      deci= 35;
+      printBinary( deci);
+      System.out.println();
+      
+      //______________________________________________________________________________________________________________________
+      //C) TEST
+      
+      System.out.println( "The array being alphabetical is " + isLexi( lexiWordArray ));
+      System.out.println( "The array being alphabetical is " + isLexi( nonLexiWordArray));
+      
+      //______________________________________________________________________________________________________________________
+      //D) TEST
+      
+      printnDigitEvenNums( digitNo );
+      //______________________________________________________________________________________________________________________
+   }
+
+}

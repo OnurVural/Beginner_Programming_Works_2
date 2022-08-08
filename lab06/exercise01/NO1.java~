@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+/**
+ * __program description___ 
+ * @author __your name___
+ * @version __date__
+ */ 
+public class NO1
+{
+   public static void printReverse( int n, int[] x)
+   {
+      if ( n > 0 )
+      {
+          System.out.print(x[n-1] + ","); //first prints the nth value 
+          printReverse( n-1, x); //then proceeds
+      }
+   }
+   
+   public static void printForward( int n, int[] x)
+   {
+      if ( n > 0 )
+      {
+          printReverse( n-1, x); //first proceeds which means it will go on until reaches the first
+          System.out.print(x[n-1] + ",");  //then prints
+      }
+   }
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+      final int[] x = {3,4,8,3,1,2,9};
+      final int n = 7;
+      // variables
+      
+      // program code
+      System.out.println( "Start...");
+      printReverse(n, x); 
+      System.out.println();
+      printForward( n, x);
+      System.out.println();
+      System.out.println( "End.");
+   }
+
+}

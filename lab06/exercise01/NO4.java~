@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+/**
+ * Write a recursive method that prints out all the integers from a starting value s, to an end value e. 
+ * Can you write a method that doesn't print the values, but returns them (in an ArrayList for example), 
+ * so they can be further processed before printing?
+ * @author Onur
+ * @version 25.04.2020
+ */ 
+public class NO4
+{
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+
+      // variables
+
+      // program code
+      System.out.println( "Start...");
+
+
+      System.out.println( "End.");
+   }
+
+}

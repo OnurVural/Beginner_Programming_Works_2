@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+/**
+ * Write a recursive method that returns the maximum value in the first n elements of an int array x
+ * @author Onur
+ * @version 25.04.2020
+ */ 
+public class NO3
+{
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+
+      // variables
+
+      // program code
+      System.out.println( "Start...");
+
+
+      System.out.println( "End.");
+   }
+
+}
