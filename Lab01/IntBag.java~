@@ -1,0 +1,16 @@
+/**
+ * Lab01 ~ Bags of integers!
+ * Using array to develop an arrayList in a sense
+ * @author Onur
+ * version 16/02/2020
+ */
+public class IntBag 
+{
+   // properties
+   private int[] bag;
+   private int valid;
+   // constructors
+   
+   // methods
+
+}
