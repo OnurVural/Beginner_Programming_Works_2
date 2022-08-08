@@ -1,0 +1,333 @@
+/**
+ * Implementation of a List class for Strings
+ * uses Java's Object-Reference distinction to explicitly represent its successor-predecessor relationship
+ * @author Onur
+ * @version 10.05.2020
+ */
+public class List 
+{
+   // properties
+   Node head;
+   
+   // constructors
+   public List()
+   {
+      head = null;   
+   }
+   
+   // methods--------------------------------------------------------------------------------------------------------------
+   
+   /**
+    * method to add a String to head of the List
+    * @param item is the desired String object to add
+    */
+   public void addToHead( String item)
+   {   
+      head = new Node( item, head);  // simply makes head refer the our new item as the beginning element 
+   }
+   
+   /**
+    * method to add a String to tail of the List iteratively O(n)
+    * @param item is the desired String object to add
+    */
+   public void addToTail( String item)    
+   {
+      
+      Node newN;
+      Node end;
+      
+      newN = new Node(item, null); // creeate the Node
+      
+      if (head == null) 
+      {
+         head = newN; // first case of head referring to nothing
+      } 
+      else 
+      {
+         end = head;
+         // same process as in others now(iterative part)
+         while (end.next != null) 
+         {
+            end = end.next; // proceeds
+         }
+         
+         end.next = newN; //attaches at last
+      } 
+      
+   }
+   
+   /**
+    * method to remove the String from the List
+    * @return the element removed previosuly referred by head 
+    */
+   public String removeFromHead()
+   {
+      String element = head.data; // gets the elements which will be removed 
+      head = head.next; // makes head refer to the next element on List by changing Node
+      return element; // returns the item removed
+   }
+   
+   /**
+    * method for checking the list being empty or not
+    * @return true if head does not refer to anything, in other words list is empty, false otherwise
+    */
+   public boolean isEmpty()
+   {
+      if ( head == null )
+      {
+         return true;
+      }
+      return false;
+   }
+   
+   /**
+    * method for returning the element at given index, invalid index returns null
+    * @param index is the desired elements
+    * @return the String in location of index, null if index is out of boundries
+    */
+   public String getData( int index)
+   {
+      int count;
+      Node tempN;
+      
+      count = 0;
+      tempN = head;
+      
+      while ( tempN != null)
+      {
+         if ( count == index) 
+         {
+            return tempN.data;   
+         }
+         
+         count++;
+         tempN = tempN.next;
+      }
+      
+      return null;
+   }
+   
+   /**
+    * method to print the elements of our list iteratively
+    */
+   public void print()                  
+   {
+      Node temp;
+      temp = head; // we needed to intoduce a node to temporarly hold the location 
+      
+      while ( temp != null) 
+      {
+         System.out.print(temp.data + " ");
+         temp = temp.next; // passes next
+      }
+   }
+   
+   /**
+    * method to print the elemnts of our list reverse order recursively
+    */
+   public void printReverse()
+   {
+      printReverse( head);
+   }
+   
+   /**
+    * helper method to print the elemnts of our list reverse order recursively
+    * @param n is node to keep track of
+    */
+   public void printReverse(Node n)
+   {
+      if( n != null)// basic step
+      {
+         // enters recursion
+         printReverse( n.next);
+         
+         //prints element
+         System.out.print( n.data + " ");
+      }
+   }
+   
+   /**
+    * method that checks a target is on the list or not
+    * @return true if target is on the list, false otherwise
+    */
+   public boolean contains( String target)   
+   {
+      Node temp;
+      temp = head;
+      
+      while ( temp != null)
+      {
+         if ( temp.data == target ) // catches
+         {
+            return true;
+         }
+         temp = temp.next;     
+      }
+      
+      return false;   
+   }
+   
+   /**
+    * method that checks whether the values on list are strictly ascending or not
+    * @return true if values strictly ascending, else false
+    */     
+   public boolean isOrdered()  
+   {
+      Node temp;
+      temp = head;
+      
+      while ( temp.next != null )
+      {
+         
+         if ( temp.data.compareTo(temp.next.data)> 0) //will check the first two values always
+         {  
+            return false; // breaking condition
+         }
+         
+         temp = temp.next;
+      }
+      
+      return true;
+   }
+   
+   /**
+    * method that returns a String representation of the list (in the same way ArrayList does)
+    * @return temp which is the elements represented like Java's ArrayList(TM)
+    */
+   public String toString()
+   {
+      String s;
+      Node tempN;
+      
+      s = "{";
+      tempN = head;
+      
+      while ( tempN != null)
+      {
+         s = s + tempN.data + ",";   
+         tempN = tempN.next;
+      }
+      
+      s = s.substring(0,s.length()- 1) + "}";
+      return s;  
+   }
+   
+   /**
+    * Given two lists, a & b, return a new list that contains only those elements of a and b, that are not on both lists.(O(nLogn))
+    * @param a is one list to be merged
+    * @param b is the other list to be merged
+    * @return a new merged list having unique ( not shared in a & b together) elements O(m*n) sorted
+    */
+   public static List merger( List a, List b)
+   {
+      List mergedList;
+      String target;
+      Node temp;
+      
+      mergedList = new List();
+      
+      // double check process begins
+      
+      temp = a.head;
+      while ( temp != null )
+      {
+         target = temp.data;
+         
+         if ( !(b.contains( target)) )
+         {
+            mergedList.addToTail( target);   
+         }
+         temp = temp.next; 
+      }
+      
+      temp = b.head;
+      while ( temp != null )
+      {
+         target = temp.data;
+         
+         if ( !(a.contains( target)) )
+         {
+            mergedList.addToTail(target);   
+         }
+         temp = temp.next; 
+      }
+      
+      
+      return mergedList;
+   }
+   
+   // helper methods-----------------------------------------------------------------------
+   /**
+    * helper method that returns a reference to n's successor or null if it doesn't have one.
+    * @param is the node to determine its next property
+    * @return the next node, null otherwise
+    */
+   private Node next( Node n)
+   {
+      return n.next; // reaches mext element
+   }
+   
+   /**
+    * helper method that returns a reference to n's predecessor or null if it doesn't have one.
+    * @param is the node to determine its predecessor
+    * @return the previous node, null otherwise
+    */
+   private Node previous( Node n)
+   {
+      Node temp;
+      temp = head;
+      
+      while ( temp != null )
+      {
+         if ( temp.next == n ) // finds successor
+         {
+            return temp; // locates predecessor
+         }
+         else
+         {
+            temp = temp.next; // moves
+         }
+      }
+      
+      return null;   
+   }
+   
+   /**
+    * helper method that that returns a reference to the last Node in the list.
+    * @return tail Node of the list
+    */
+   private Node tail()
+   {
+      Node temp;
+      temp = head;
+      
+      while ( temp != null )
+      {
+         if ( temp.next == null ) // means at the end
+         {
+            return temp;
+         }
+         else 
+         {
+            temp = temp.next; // proceeds
+         }
+      }
+      
+      return null;
+   }
+   
+   // end of methods--------------------------------------------------------------------------------------------------------
+   
+   //inner class Node
+   private class Node 
+   {
+      String data;
+      Node next;
+      
+      public Node( String data, Node next) 
+      {
+         this.data = data;
+         this.next = next;
+      }
+   } // end class Node
+}

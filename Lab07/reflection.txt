@@ -1,0 +1,8 @@
+A SHORT PERSONAL REFLECTION FOR TESTING PROCESS
+
+It contributed to writing the code with less problems in the first place
+The testIsOrdered method spotted some error
+By entering values with hand actually I did not make any mistakes as such
+I spotted problems in my entered string for target while checking manually
+Preparing test methods was a bit time taking compared to my previous attempts
+As this time was not the first time like previous attempt is was definetly faster

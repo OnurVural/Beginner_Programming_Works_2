@@ -1,0 +1,92 @@
+import java.util.Scanner;
+import junit.framework.TestCase;
+
+/**
+ * Test class for our List class
+ * @author Onur
+ * @version 10.05.2020
+ */ 
+public class Lab07test 
+{
+
+   public static void main( String[] args)
+   {
+      Scanner scan = new Scanner( System.in);
+
+      // constants
+
+      // variables
+      List list;
+      List stringcopy;
+      String[] s = {"apple","banana","potato","orange"};
+      String str;
+      // program code
+      list = new List();
+      str = "Monkey";
+      System.out.println( "List being empty is " + list.isEmpty()); 
+      
+      //add some elements 
+      list.addToHead( "dog");
+      list.addToHead( "horse");
+      list.addToHead( "snake");
+      System.out.println( "The list is = " + list);
+      
+      //demonstrating print method
+      list.print();
+      list.removeFromHead();
+      System.out.println();
+      System.out.println( "List after removal from head is: ");
+      list.print();
+      System.out.println();
+      System.out.println();
+      System.out.println("List being empty is " + list.isEmpty());
+      
+      System.out.println("-----------------------");
+      list.printReverse();
+      System.out.println("-----------------------");
+      list.addToTail( "dragon");
+      list.addToTail( "drago");
+      list.print();
+      System.out.println("-----------------------");
+      System.out.println(list.contains( "horse"));
+      System.out.println(list.contains( "cat"));
+      System.out.println(list);
+      System.out.println("----------XXX----------");
+      System.out.println( list.getData( 2));
+      System.out.println("----------YYY----------");
+      
+      System.out.println(list.isOrdered() ); 
+      list.removeFromHead();
+      System.out.println(list.isOrdered() ); 
+      
+      stringcopy = list.createFrom( s );
+      System.out.println(stringcopy ); 
+      stringcopy = list.createFrom( str );
+      System.out.println(stringcopy ); 
+      
+      
+      
+      //----
+      List l1;
+      List l2;
+      
+      l1 = new List();
+      l2 = new List();
+//      
+      l1.addToTail("A");
+      l1.addToTail("D");
+      l1.addToTail("C");
+      System.out.println(l1);
+      
+      l2.addToTail("K");
+      l2.addToTail("B");
+      l2.addToTail("A");
+      l2.addToTail("C");
+      l2.addToTail("R");
+      System.out.println(l2);
+      
+      stringcopy = list.merger( l1,l2 );
+      System.out.println(stringcopy );
+   }
+
+}
